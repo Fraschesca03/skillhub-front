@@ -1,3 +1,4 @@
+import './App.css';
 import { BrowserRouter, Routes, Route, Navigate } from 'react-router-dom';
 import { AuthProvider, useAuth } from './context/AuthContext';
 import AccueilPage from './pages/AccueilPage';
@@ -5,6 +6,7 @@ import CataloguePage from './pages/CataloguePage';
 import DetailFormationPage from './pages/DetailFormationPage';
 import DashboardFormateurPage from './pages/DashboardFormateurPage';
 import DashboardApprenantPage from './pages/DashboardApprenantPage';
+import ApprendrePage from './pages/ApprendrePage';
 
 function RoutePrivee({ children }) {
     const { estConnecte } = useAuth();
@@ -24,8 +26,8 @@ function RouteApprenant({ children }) {
 function AppRoutes() {
     return (
         <Routes>
-            <Route path="/"              element={<AccueilPage />} />
-            <Route path="/formations"    element={<CataloguePage />} />
+            <Route path="/" element={<AccueilPage />} />
+            <Route path="/formations" element={<CataloguePage />} />
             <Route path="/formation/:id" element={<DetailFormationPage />} />
 
             <Route
@@ -38,12 +40,24 @@ function AppRoutes() {
                     </RoutePrivee>
                 }
             />
+
             <Route
                 path="/dashboard/apprenant"
                 element={
                     <RoutePrivee>
                         <RouteApprenant>
                             <DashboardApprenantPage />
+                        </RouteApprenant>
+                    </RoutePrivee>
+                }
+            />
+
+            <Route
+                path="/apprendre/:id"
+                element={
+                    <RoutePrivee>
+                        <RouteApprenant>
+                            <ApprendrePage />
                         </RouteApprenant>
                     </RoutePrivee>
                 }

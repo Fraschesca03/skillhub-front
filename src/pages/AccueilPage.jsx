@@ -1,20 +1,20 @@
 import { useEffect, useState } from 'react';
-import { Link, useNavigate } from 'react-router-dom';
+import { useNavigate } from 'react-router-dom';
 import { useAuth } from '../context/AuthContext';
 import formationService from '../services/formationService';
 import Navbar from '../components/Navbar';
 import Footer from '../components/Footer';
-import Bouton from '../components/Bouton';
+import ModalAuth from '../components/ModalAuth';
 import './AccueilPage.css';
 
 export default function AccueilPage() {
     const { estConnecte } = useAuth();
     const navigate = useNavigate();
 
-    const [formations, setFormations]     = useState([]);
-    const [chargement, setChargement]     = useState(true);
+    const [formations,  setFormations]  = useState([]);
+    const [chargement,  setChargement]  = useState(true);
+    const [modalMode,   setModalMode]   = useState(null);
 
-    // Chargement des 3 premières formations pour la mise en avant
     useEffect(() => {
         const charger = async () => {
             try {
@@ -29,74 +29,139 @@ export default function AccueilPage() {
         charger();
     }, []);
 
+    const temoignages = [
+        {
+            nom:    'Ikalo RAZAFIMAHARAVO',
+            role:   'Apprenante Front-End',
+            texte:  "Des cours clairs, un suivi réel et une plateforme très intuitive. J'ai trouvé mon premier job grâce à cette formation.",
+            avatar: 'IR',
+        },
+        {
+            nom:    'Ny Aiko RASOLOARIDIMBY',
+            role:   'Formateur Back-End',
+            texte:  'Une vraie vision pédagogique, des outils modernes et une communauté engagée.',
+            avatar: 'NR',
+        },
+        {
+            nom:    'Andry RAKOTOARISOA',
+            role:   'Apprenant Full Stack',
+            texte:  "La meilleure plateforme pour apprendre vite et bien. L'accompagnement est exceptionnel.",
+            avatar: 'AR',
+        },
+    ];
+
+    const partenaires = [
+        'Université 1', 'Université 2', 'Université 3',
+        'Université 4', 'Université 5', 'Université 6',
+        'Université 7', 'Université 8',
+    ];
+
+    const getNiveauLabel = (niveau) => {
+        const labels = { debutant: 'Débutant', intermediaire: 'Intermédiaire', avance: 'Avancé' };
+        return labels[niveau] || niveau;
+    };
+
     return (
         <div className="accueil-page">
-
-            {/* Composant Navbar commun */}
             <Navbar />
 
-            {/* Section héro */}
+            {/* HERO */}
             <section className="accueil-hero">
-                <h1 className="accueil-hero-titre">
-                    Partagez et développez vos compétences
-                </h1>
-                <p className="accueil-hero-description">
-                    SkillHub met en relation des formateurs passionnés et des apprenants
-                    motivés autour de formations en ligne structurées et gratuites.
-                </p>
-
-                {!estConnecte() && (
-                    <div className="accueil-hero-actions">
-                        <Bouton
-                            variante="principal"
-                            taille="grand"
-                            onClick={() => navigate('/register')}
-                        >
-                            Commencer gratuitement
-                        </Bouton>
-                        <Bouton
-                            variante="fantome"
-                            taille="grand"
-                            onClick={() => navigate('/formations')}
-                        >
-                            Voir les formations
-                        </Bouton>
-                    </div>
-                )}
-            </section>
-
-            {/* Section avantages */}
-            <section className="accueil-avantages">
-                <div className="accueil-avantage">
-                    <div className="accueil-avantage-icone">🎓</div>
-                    <h3>Pour les apprenants</h3>
-                    <p>
-                        Accédez à des formations gratuites, suivez votre progression
-                        module par module et apprenez à votre rythme.
+                <div className="accueil-hero-texte">
+                    <h1 className="accueil-hero-titre">
+                        Get <span className="mot-bleu">trained today</span>,<br />
+                        <span className="mot-violet">lead tomorrow</span>
+                    </h1>
+                    <p className="accueil-hero-desc">
+                        SKILLHUB vous aide à lancer votre carrière. Formations pratiques,
+                        projets réels et accompagnement pour progresser vite.
                     </p>
+                    {!estConnecte() && (
+                        <div className="accueil-hero-actions">
+                            <button
+                                className="btn-principal"
+                                onClick={() => setModalMode('register')}
+                            >
+                                S'inscrire
+                            </button>
+                            <button
+                                className="btn-secondaire"
+                                onClick={() => navigate('/formations')}
+                            >
+                                Formations
+                            </button>
+                        </div>
+                    )}
                 </div>
-                <div className="accueil-avantage">
-                    <div className="accueil-avantage-icone">📚</div>
-                    <h3>Pour les formateurs</h3>
-                    <p>
-                        Créez et gérez vos formations, organisez vos modules et
-                        partagez votre expertise avec une communauté d'apprenants.
-                    </p>
-                </div>
-                <div className="accueil-avantage">
-                    <div className="accueil-avantage-icone">🆓</div>
-                    <h3>100% gratuit</h3>
-                    <p>
-                        Toutes les formations disponibles sur SkillHub sont
-                        entièrement gratuites pour tous les apprenants.
-                    </p>
+                <div className="accueil-hero-image">
+                    <img
+                        src="https://images.unsplash.com/photo-1522071820081-009f0129c71c?auto=format&fit=crop&w=1200&q=80"
+                        alt="Apprenants SkillHub"
+                        loading="lazy"
+                    />
                 </div>
             </section>
 
-            {/* Section formations mises en avant */}
+            {/* COMMENT CA MARCHE */}
+            <section className="accueil-fonctionnement">
+                <h2 className="titre-section">Comment ca marche ?</h2>
+                <div className="accueil-cards-grille">
+                    {[
+                        { titre: 'Build up yourself', desc: 'Développe tes compétences avec des cours guidés et projets.', chip: 'Explorer',  icon: '✓' },
+                        { titre: 'Enroll',            desc: "Inscris-toi rapidement et commence dès aujourd'hui.",          chip: "S'inscrire", icon: '★' },
+                        { titre: 'Resources',         desc: 'Accède aux supports, quiz, PDF et suivi des progrès.',          chip: 'Voir plus',  icon: '📁' },
+                        { titre: 'Call',              desc: "Contacte-nous pour plus d'information.",                       chip: 'Contacter',  icon: '📞' },
+                    ].map((item, i) => (
+                        <div key={i} className="accueil-card-glass">
+                            <div className="accueil-card-icone">{item.icon}</div>
+                            <h3>{item.titre}</h3>
+                            <p>{item.desc}</p>
+                            <span className="accueil-card-chip">{item.chip}</span>
+                        </div>
+                    ))}
+                </div>
+            </section>
+
+            {/* NOS VALEURS */}
+            <section className="accueil-valeurs">
+                <h2 className="titre-section">Nos valeurs</h2>
+                <p className="sous-titre-section">Ce qui rend SkillHub unique au quotidien.</p>
+                <div className="accueil-valeurs-grille">
+                    {[
+                        {
+                            titre: 'Accessibilité',
+                            desc:  'Des contenus clairs, progressifs et disponibles 24h/24.',
+                            btn:   'Découvrir',
+                            img:   'https://images.unsplash.com/photo-1573496359142-b8d87734a5a2?auto=format&fit=crop&w=600&q=80',
+                        },
+                        {
+                            titre: 'Excellence',
+                            desc:  'Des programmes conçus par des formateurs expérimentés.',
+                            btn:   'Voir les programmes',
+                            img:   'https://images.unsplash.com/photo-1524178232363-1fb2b075b655?auto=format&fit=crop&w=600&q=80',
+                        },
+                        {
+                            titre: 'Accompagnement',
+                            desc:  "Une communauté d'apprenants et de formateurs à votre écoute.",
+                            btn:   'Rejoindre',
+                            img:   'https://images.unsplash.com/photo-1517245386807-bb43f82c33c4?auto=format&fit=crop&w=600&q=80',
+                        },
+                    ].map((val, i) => (
+                        <div key={i} className="accueil-valeur-card" style={{ '--bg': `url(${val.img})` }}>
+                            <div className="accueil-valeur-overlay" />
+                            <div className="accueil-valeur-contenu">
+                                <h3>{val.titre}</h3>
+                                <p>{val.desc}</p>
+                                <button className="btn-valeur">{val.btn}</button>
+                            </div>
+                        </div>
+                    ))}
+                </div>
+            </section>
+
+            {/* FORMATIONS A LA UNE */}
             <section className="accueil-formations">
-                <h2 className="accueil-section-titre">Formations à la une</h2>
-
+                <h2 className="titre-section">Formations a la une</h2>
                 {chargement ? (
                     <p className="accueil-chargement">Chargement...</p>
                 ) : formations.length === 0 ? (
@@ -104,40 +169,79 @@ export default function AccueilPage() {
                 ) : (
                     <div className="accueil-formations-grille">
                         {formations.map((formation) => (
-                            <div key={formation.id} className="accueil-card">
-                                <div className="accueil-card-niveau-badge">
-                                    {formation.niveau}
-                                </div>
-                                <h3 className="accueil-card-titre">{formation.titre}</h3>
-                                <p className="accueil-card-formateur">
+                            <div key={formation.id} className="accueil-formation-card">
+                                <span className="accueil-badge-niveau">
+                                    {getNiveauLabel(formation.niveau)}
+                                </span>
+                                <h3>{formation.titre}</h3>
+                                <p className="accueil-formation-formateur">
                                     Par {formation.formateur?.nom}
                                 </p>
-                                <Bouton
-                                    variante="principal"
-                                    taille="petit"
+                                <button
+                                    className="btn-principal"
                                     onClick={() => navigate(`/formation/${formation.id}`)}
                                 >
-                                    Voir le détail
-                                </Bouton>
+                                    Voir le detail
+                                </button>
                             </div>
                         ))}
                     </div>
                 )}
-
                 <div className="accueil-voir-tout">
-                    <Bouton
-                        variante="secondaire"
-                        taille="moyen"
+                    <button
+                        className="btn-secondaire"
                         onClick={() => navigate('/formations')}
                     >
                         Voir toutes les formations
-                    </Bouton>
+                    </button>
                 </div>
             </section>
 
-            {/* Composant Footer commun */}
+            {/* PARTENAIRES */}
+            <section className="accueil-partenaires">
+                <h2 className="titre-section">Nos Partenaires officiels</h2>
+                <p className="accueil-partenaires-desc">
+                    Ils nous soutiennent dans notre mission educative depuis plusieurs annees.
+                </p>
+                <div className="carousel-wrapper">
+                    <div className="carousel-track">
+                        {[...partenaires, ...partenaires].map((p, i) => (
+                            <div key={i} className="carousel-card">
+                                <span>{p}</span>
+                            </div>
+                        ))}
+                    </div>
+                </div>
+            </section>
+
+            {/* TEMOIGNAGES */}
+            <section className="accueil-temoignages">
+                <h2 className="titre-section">Ils nous font confiance</h2>
+                <div className="accueil-temoignages-grille">
+                    {temoignages.map((t, i) => (
+                        <div key={i} className="accueil-temoignage-card">
+                            <div className="accueil-temoignage-header">
+                                <div className="accueil-avatar">{t.avatar}</div>
+                                <div>
+                                    <h4>{t.nom}</h4>
+                                    <span>{t.role}</span>
+                                </div>
+                            </div>
+                            <p>"{t.texte}"</p>
+                            <div className="accueil-etoiles">★★★★★</div>
+                        </div>
+                    ))}
+                </div>
+            </section>
+
             <Footer />
 
+            {modalMode && (
+                <ModalAuth
+                    mode={modalMode}
+                    onFermer={() => setModalMode(null)}
+                />
+            )}
         </div>
     );
 }

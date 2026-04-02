@@ -2,7 +2,8 @@
     min-height: 100vh;
     display: flex;
     flex-direction: column;
-    background-color: #f8fafc;
+    background-color: var(--fond-page);
+    color: var(--texte-blanc);
 }
 
 .da-contenu {
@@ -23,47 +24,49 @@
 }
 
 .da-titre {
+    font-family: var(--police-titre);
     font-size: 1.8rem;
-    font-weight: 700;
-    color: #1e293b;
+    font-weight: 800;
+    color: var(--texte-blanc);
     margin-bottom: 0.25rem;
+    letter-spacing: -0.5px;
 }
 
 .da-sous-titre {
-    font-size: 0.95rem;
-    color: #64748b;
+    font-size: 0.92rem;
+    color: var(--texte-doux);
 }
 
 .da-succes {
-    background-color: #f0fdf4;
-    border: 1px solid #bbf7d0;
-    color: #15803d;
+    background-color: rgba(34, 197, 94, 0.1);
+    border: 1px solid rgba(34, 197, 94, 0.25);
+    color: #4ade80;
     padding: 0.75rem 1rem;
-    border-radius: 8px;
+    border-radius: var(--rayon);
     font-size: 0.9rem;
     margin-bottom: 1.25rem;
 }
 
 .da-erreur {
-    background-color: #fef2f2;
-    border: 1px solid #fecaca;
-    color: #dc2626;
+    background-color: rgba(239, 68, 68, 0.1);
+    border: 1px solid rgba(239, 68, 68, 0.25);
+    color: #f87171;
     padding: 0.75rem 1rem;
-    border-radius: 8px;
+    border-radius: var(--rayon);
     font-size: 0.9rem;
     margin-bottom: 1.25rem;
 }
 
 .da-chargement {
     text-align: center;
-    color: #94a3b8;
+    color: var(--texte-doux);
     padding: 3rem;
 }
 
 .da-vide {
     text-align: center;
     padding: 4rem 2rem;
-    color: #64748b;
+    color: var(--texte-doux);
     display: flex;
     flex-direction: column;
     align-items: center;
@@ -77,20 +80,20 @@
 }
 
 .da-card {
-    background-color: #ffffff;
-    border-radius: 12px;
+    background-color: var(--fond-carte);
+    border-radius: var(--rayon);
     padding: 1.5rem;
-    border: 1px solid #e2e8f0;
-    box-shadow: 0 2px 8px rgba(0, 0, 0, 0.05);
+    border: 1px solid var(--bordure);
+    box-shadow: var(--ombre-carte);
     display: flex;
     flex-direction: column;
     gap: 0.75rem;
-    transition: box-shadow 0.2s, transform 0.2s;
+    transition: transform 0.25s ease, border-color 0.25s ease;
 }
 
 .da-card:hover {
-    box-shadow: 0 6px 20px rgba(0, 0, 0, 0.09);
-    transform: translateY(-2px);
+    transform: translateY(-4px);
+    border-color: var(--bordure-hover);
 }
 
 .da-card-badges {
@@ -99,25 +102,27 @@
 }
 
 .da-badge-niveau {
-    background-color: #eff6ff;
-    color: #3b82f6;
+    background-color: rgba(79, 142, 247, 0.12);
+    border: 1px solid rgba(79, 142, 247, 0.25);
+    color: #60a5fa;
     font-size: 0.75rem;
     font-weight: 600;
     padding: 0.2rem 0.6rem;
-    border-radius: 20px;
+    border-radius: 50px;
 }
 
 .da-card-titre {
+    font-family: var(--police-titre);
     font-size: 1.05rem;
-    font-weight: 600;
-    color: #1e293b;
+    font-weight: 700;
+    color: var(--texte-blanc);
     margin: 0;
 }
 
 .da-card-description {
-    font-size: 0.88rem;
-    color: #64748b;
-    line-height: 1.5;
+    font-size: 0.875rem;
+    color: var(--texte-doux);
+    line-height: 1.55;
     margin: 0;
     flex: 1;
 }
@@ -136,28 +141,28 @@
 }
 
 .da-progression-label {
-    font-size: 0.82rem;
-    color: #64748b;
+    font-size: 0.8rem;
+    color: var(--texte-doux);
 }
 
 .da-progression-valeur {
-    font-size: 0.82rem;
+    font-size: 0.8rem;
     font-weight: 700;
-    color: #3b82f6;
+    color: var(--bleu-vif);
 }
 
 .da-progression-barre {
-    height: 8px;
-    background-color: #e2e8f0;
+    height: 6px;
+    background-color: rgba(255, 255, 255, 0.08);
     border-radius: 20px;
     overflow: hidden;
 }
 
 .da-progression-remplissage {
     height: 100%;
-    background-color: #3b82f6;
+    background: linear-gradient(90deg, var(--bleu-vif), var(--violet));
     border-radius: 20px;
-    transition: width 0.4s ease;
+    transition: width 0.5s ease;
 }
 
 .da-card-actions {

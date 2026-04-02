@@ -2,7 +2,8 @@
     min-height: 100vh;
     display: flex;
     flex-direction: column;
-    background-color: #f8fafc;
+    background-color: var(--fond-page);
+    color: var(--texte-blanc);
 }
 
 .apprendre-contenu {
@@ -13,13 +14,12 @@
     width: 100%;
 }
 
-/* En-tête */
 .apprendre-entete {
-    background-color: #ffffff;
-    border-radius: 12px;
+    background-color: var(--fond-carte);
+    border-radius: var(--rayon);
     padding: 1.75rem;
-    border: 1px solid #e2e8f0;
-    box-shadow: 0 2px 8px rgba(0, 0, 0, 0.05);
+    border: 1px solid var(--bordure);
+    box-shadow: var(--ombre-carte);
     margin-bottom: 1.5rem;
     display: flex;
     flex-direction: column;
@@ -29,34 +29,36 @@
 .apprendre-retour {
     background: none;
     border: none;
-    color: #3b82f6;
-    font-size: 0.88rem;
+    color: var(--bleu-vif);
+    font-size: 0.875rem;
+    font-family: var(--police-corps);
     cursor: pointer;
     padding: 0;
     text-align: left;
-    margin-bottom: 0.25rem;
     font-weight: 500;
+    transition: opacity 0.2s;
 }
 
 .apprendre-retour:hover {
-    text-decoration: underline;
+    opacity: 0.75;
 }
 
 .apprendre-titre {
+    font-family: var(--police-titre);
     font-size: 1.6rem;
-    font-weight: 700;
-    color: #1e293b;
+    font-weight: 800;
+    color: var(--texte-blanc);
     margin: 0;
+    letter-spacing: -0.5px;
 }
 
 .apprendre-description {
-    font-size: 0.95rem;
-    color: #64748b;
-    line-height: 1.6;
+    font-size: 0.92rem;
+    color: var(--texte-doux);
+    line-height: 1.65;
     margin: 0;
 }
 
-/* Progression */
 .apprendre-progression-bloc {
     display: flex;
     flex-direction: column;
@@ -69,89 +71,87 @@
 }
 
 .apprendre-progression-label {
-    font-size: 0.88rem;
-    color: #64748b;
+    font-size: 0.85rem;
+    color: var(--texte-doux);
     font-weight: 500;
 }
 
 .apprendre-progression-valeur {
-    font-size: 0.88rem;
+    font-size: 0.85rem;
     font-weight: 700;
-    color: #3b82f6;
+    color: var(--bleu-vif);
 }
 
 .apprendre-progression-barre {
-    height: 10px;
-    background-color: #e2e8f0;
+    height: 8px;
+    background-color: rgba(255, 255, 255, 0.07);
     border-radius: 20px;
     overflow: hidden;
 }
 
 .apprendre-progression-remplissage {
     height: 100%;
-    background-color: #3b82f6;
+    background: linear-gradient(90deg, var(--bleu-vif), var(--violet));
     border-radius: 20px;
     transition: width 0.5s ease;
 }
 
 .apprendre-felicitations {
     font-size: 0.9rem;
-    color: #15803d;
+    color: #4ade80;
     font-weight: 600;
     margin: 0;
 }
 
-/* Messages */
 .apprendre-succes {
-    background-color: #f0fdf4;
-    border: 1px solid #bbf7d0;
-    color: #15803d;
+    background-color: rgba(34, 197, 94, 0.1);
+    border: 1px solid rgba(34, 197, 94, 0.25);
+    color: #4ade80;
     padding: 0.75rem 1rem;
-    border-radius: 8px;
+    border-radius: var(--rayon);
     font-size: 0.9rem;
     margin-bottom: 1rem;
 }
 
 .apprendre-erreur {
-    background-color: #fef2f2;
-    border: 1px solid #fecaca;
-    color: #dc2626;
+    background-color: rgba(239, 68, 68, 0.1);
+    border: 1px solid rgba(239, 68, 68, 0.25);
+    color: #f87171;
     padding: 0.75rem 1rem;
-    border-radius: 8px;
+    border-radius: var(--rayon);
     font-size: 0.9rem;
     margin-bottom: 1rem;
 }
 
-/* Layout principal */
 .apprendre-layout {
     display: grid;
-    grid-template-columns: 280px 1fr;
+    grid-template-columns: 270px 1fr;
     gap: 1.5rem;
     align-items: start;
 }
 
-/* Sidebar modules */
 .apprendre-sidebar {
-    background-color: #ffffff;
-    border-radius: 12px;
+    background-color: var(--fond-carte);
+    border-radius: var(--rayon);
     padding: 1.25rem;
-    border: 1px solid #e2e8f0;
-    box-shadow: 0 2px 8px rgba(0, 0, 0, 0.05);
+    border: 1px solid var(--bordure);
+    box-shadow: var(--ombre-carte);
     position: sticky;
     top: 80px;
 }
 
 .apprendre-sidebar-titre {
-    font-size: 0.95rem;
+    font-family: var(--police-titre);
+    font-size: 0.9rem;
     font-weight: 700;
-    color: #1e293b;
+    color: var(--texte-blanc);
     margin-bottom: 1rem;
 }
 
 .apprendre-modules-liste {
     display: flex;
     flex-direction: column;
-    gap: 0.4rem;
+    gap: 0.35rem;
 }
 
 .apprendre-module-item {
@@ -159,66 +159,69 @@
     align-items: center;
     gap: 0.75rem;
     padding: 0.65rem 0.75rem;
-    border-radius: 8px;
+    border-radius: 10px;
     border: none;
     background: none;
     cursor: pointer;
     text-align: left;
     width: 100%;
-    transition: background-color 0.2s;
-    color: #475569;
+    color: var(--texte-doux);
+    font-family: var(--police-corps);
+    transition: background-color 0.2s, color 0.2s;
 }
 
 .apprendre-module-item:hover {
-    background-color: #f1f5f9;
+    background-color: rgba(255, 255, 255, 0.04);
+    color: var(--texte-clair);
 }
 
 .apprendre-module-actif {
-    background-color: #eff6ff;
-    color: #1e40af;
+    background-color: rgba(79, 142, 247, 0.1);
+    color: #60a5fa;
+    border: 1px solid rgba(79, 142, 247, 0.2);
 }
 
 .apprendre-module-termine {
-    color: #15803d;
+    color: #4ade80;
 }
 
 .apprendre-module-numero {
     width: 26px;
     height: 26px;
     border-radius: 50%;
-    background-color: #e2e8f0;
-    color: #475569;
-    font-size: 0.78rem;
+    background-color: rgba(255, 255, 255, 0.07);
+    color: var(--texte-doux);
+    font-size: 0.75rem;
     font-weight: 700;
     display: flex;
     align-items: center;
     justify-content: center;
     flex-shrink: 0;
+    font-family: var(--police-titre);
 }
 
 .apprendre-module-actif .apprendre-module-numero {
-    background-color: #3b82f6;
+    background: linear-gradient(135deg, var(--bleu-vif), var(--violet));
     color: #ffffff;
 }
 
 .apprendre-module-termine .apprendre-module-numero {
-    background-color: #16a34a;
-    color: #ffffff;
+    background-color: rgba(34, 197, 94, 0.15);
+    color: #4ade80;
 }
 
 .apprendre-module-nom {
-    font-size: 0.88rem;
+    font-size: 0.855rem;
     font-weight: 500;
     line-height: 1.4;
 }
 
-/* Contenu module */
 .apprendre-module-contenu {
-    background-color: #ffffff;
-    border-radius: 12px;
+    background-color: var(--fond-carte);
+    border-radius: var(--rayon);
     padding: 1.75rem;
-    border: 1px solid #e2e8f0;
-    box-shadow: 0 2px 8px rgba(0, 0, 0, 0.05);
+    border: 1px solid var(--bordure);
+    box-shadow: var(--ombre-carte);
     min-height: 400px;
     display: flex;
     flex-direction: column;
@@ -234,26 +237,27 @@
 }
 
 .apprendre-module-titre {
+    font-family: var(--police-titre);
     font-size: 1.3rem;
     font-weight: 700;
-    color: #1e293b;
+    color: var(--texte-blanc);
     margin: 0;
 }
 
 .apprendre-badge-termine {
-    background-color: #f0fdf4;
-    color: #16a34a;
-    border: 1px solid #bbf7d0;
-    font-size: 0.82rem;
+    background-color: rgba(34, 197, 94, 0.1);
+    border: 1px solid rgba(34, 197, 94, 0.25);
+    color: #4ade80;
+    font-size: 0.8rem;
     font-weight: 600;
-    padding: 0.3rem 0.8rem;
-    border-radius: 20px;
+    padding: 0.3rem 0.85rem;
+    border-radius: 50px;
     white-space: nowrap;
 }
 
 .apprendre-module-texte {
-    font-size: 0.95rem;
-    color: #334155;
+    font-size: 0.92rem;
+    color: var(--texte-doux);
     line-height: 1.8;
     flex: 1;
     white-space: pre-wrap;
@@ -263,11 +267,11 @@
     display: flex;
     justify-content: space-between;
     padding-top: 1rem;
-    border-top: 1px solid #f1f5f9;
+    border-top: 1px solid var(--bordure);
 }
 
 .apprendre-vide {
-    color: #94a3b8;
+    color: var(--texte-doux);
     font-size: 0.95rem;
     text-align: center;
     padding: 3rem;
@@ -276,7 +280,7 @@
 .apprendre-chargement {
     text-align: center;
     padding: 3rem;
-    color: #94a3b8;
+    color: var(--texte-doux);
     flex: 1;
 }
 
@@ -287,5 +291,15 @@
     align-items: center;
     justify-content: center;
     gap: 1rem;
-    color: #dc2626;
+    color: #f87171;
+}
+
+@media (max-width: 768px) {
+    .apprendre-layout {
+        grid-template-columns: 1fr;
+    }
+
+    .apprendre-sidebar {
+        position: static;
+    }
 }

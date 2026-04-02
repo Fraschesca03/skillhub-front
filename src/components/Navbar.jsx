@@ -8,8 +8,8 @@ export default function Navbar() {
     const { utilisateur, logout, estConnecte } = useAuth();
     const navigate = useNavigate();
 
-    // Contrôle de la modal : null | 'login' | 'register'
-    const [modalMode, setModalMode] = useState(null);
+    const [modalOuverte, setModalOuverte] = useState(false);
+    const [menuOuvert,   setMenuOuvert]   = useState(false);
 
     const handleLogout = async () => {
         await logout();
@@ -17,6 +17,7 @@ export default function Navbar() {
     };
 
     const allerAuDashboard = () => {
+        setMenuOuvert(false);
         if (utilisateur?.role === 'formateur') {
             navigate('/dashboard/formateur');
         } else {
@@ -27,45 +28,60 @@ export default function Navbar() {
     return (
         <>
             <nav className="navbar">
-                <div className="navbar-gauche">
-                    <Link to="/" className="navbar-logo">SkillHub</Link>
-                    <Link to="/formations" className="navbar-lien">Formations</Link>
-                </div>
+                <div className="navbar-container">
 
-                <div className="navbar-droite">
-                    {estConnecte() ? (
-                        <>
-                            <button className="navbar-profil" onClick={allerAuDashboard}>
-                                {utilisateur?.nom}
-                            </button>
-                            <button className="navbar-btn-deconnexion" onClick={handleLogout}>
-                                Se déconnecter
-                            </button>
-                        </>
-                    ) : (
-                        <>
+                    {/* Logo */}
+                    <Link to="/" className="navbar-logo">
+                        Skill<span className="navbar-logo-hub">Hub</span>
+                    </Link>
+
+                    {/* Liens desktop */}
+                    <div className={`navbar-liens ${menuOuvert ? 'navbar-liens-ouvert' : ''}`}>
+                        <Link to="/"           className="navbar-lien" onClick={() => setMenuOuvert(false)}>Accueil</Link>
+                        <Link to="/formations" className="navbar-lien" onClick={() => setMenuOuvert(false)}>Formations</Link>
+                        <a href="#apropos"     className="navbar-lien" onClick={() => setMenuOuvert(false)}>A propos</a>
+                        <a href="#contact"     className="navbar-lien" onClick={() => setMenuOuvert(false)}>Contact</a>
+
+                        {estConnecte() ? (
+                            <>
+                                {/* Nom cliquable vers le dashboard */}
+                                <button className="navbar-profil" onClick={allerAuDashboard}>
+                                    {utilisateur?.nom}
+                                </button>
+                                <button className="navbar-btn-deconnexion" onClick={handleLogout}>
+                                    Se deconnecter
+                                </button>
+                            </>
+                        ) : (
+                            /* Un seul bouton — ouvre modal avec login + onglet register */
                             <button
-                                className="navbar-btn-secondaire"
-                                onClick={() => setModalMode('login')}
+                                className="navbar-btn-connexion"
+                                onClick={() => { setModalOuverte(true); setMenuOuvert(false); }}
                             >
                                 Se connecter
                             </button>
-                            <button
-                                className="navbar-btn-principal"
-                                onClick={() => setModalMode('register')}
-                            >
-                                S'inscrire
-                            </button>
-                        </>
-                    )}
+                        )}
+                    </div>
+
+                    {/* Burger mobile */}
+                    <button
+                        className={`navbar-burger ${menuOuvert ? 'navbar-burger-ouvert' : ''}`}
+                        onClick={() => setMenuOuvert(!menuOuvert)}
+                        aria-label="Menu"
+                    >
+                        <span></span>
+                        <span></span>
+                        <span></span>
+                    </button>
+
                 </div>
             </nav>
 
-            {/* Modal auth — s'affiche uniquement si modalMode est défini */}
-            {modalMode && (
+            {/* Modal auth — login avec onglet S'inscrire accessible */}
+            {modalOuverte && (
                 <ModalAuth
-                    mode={modalMode}
-                    onFermer={() => setModalMode(null)}
+                    mode="login"
+                    onFermer={() => setModalOuverte(false)}
                 />
             )}
         </>

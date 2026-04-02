@@ -1,0 +1,86 @@
+.bouton {
+    display: inline-flex;
+    align-items: center;
+    justify-content: center;
+    border: none;
+    border-radius: 8px;
+    font-weight: 600;
+    cursor: pointer;
+    transition: background-color 0.2s, transform 0.1s, box-shadow 0.2s;
+    text-decoration: none;
+    white-space: nowrap;
+}
+
+.bouton:active {
+    transform: scale(0.97);
+}
+
+/* Tailles */
+.bouton-petit {
+    padding: 0.35rem 0.85rem;
+    font-size: 0.82rem;
+}
+
+.bouton-moyen {
+    padding: 0.55rem 1.2rem;
+    font-size: 0.95rem;
+}
+
+.bouton-grand {
+    padding: 0.75rem 1.8rem;
+    font-size: 1.05rem;
+}
+
+/* Variante principal */
+.bouton-principal {
+    background-color: #3b82f6;
+    color: #ffffff;
+    box-shadow: 0 2px 6px rgba(59, 130, 246, 0.35);
+}
+
+.bouton-principal:hover {
+    background-color: #2563eb;
+    box-shadow: 0 4px 10px rgba(59, 130, 246, 0.45);
+}
+
+/* Variante secondaire */
+.bouton-secondaire {
+    background-color: #f1f5f9;
+    color: #1e293b;
+    border: 1px solid #e2e8f0;
+}
+
+.bouton-secondaire:hover {
+    background-color: #e2e8f0;
+}
+
+/* Variante danger */
+.bouton-danger {
+    background-color: #ef4444;
+    color: #ffffff;
+    box-shadow: 0 2px 6px rgba(239, 68, 68, 0.3);
+}
+
+.bouton-danger:hover {
+    background-color: #dc2626;
+    box-shadow: 0 4px 10px rgba(239, 68, 68, 0.4);
+}
+
+/* Variante fantome */
+.bouton-fantome {
+    background-color: transparent;
+    color: #3b82f6;
+    border: 1.5px solid #3b82f6;
+}
+
+.bouton-fantome:hover {
+    background-color: rgba(59, 130, 246, 0.08);
+}
+
+/* Désactivé */
+.bouton-desactive {
+    opacity: 0.5;
+    cursor: not-allowed;
+    transform: none;
+    box-shadow: none;
+}

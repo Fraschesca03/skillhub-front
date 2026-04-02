@@ -1,0 +1,152 @@
+.accueil-page {
+    min-height: 100vh;
+    display: flex;
+    flex-direction: column;
+    background-color: #f8fafc;
+}
+
+/* Section héro */
+.accueil-hero {
+    text-align: center;
+    padding: 5rem 2rem;
+    background: linear-gradient(135deg, #1e293b 0%, #334155 100%);
+    color: #ffffff;
+}
+
+.accueil-hero-titre {
+    font-size: 2.2rem;
+    font-weight: 700;
+    margin-bottom: 1rem;
+    line-height: 1.3;
+}
+
+.accueil-hero-description {
+    font-size: 1.1rem;
+    color: #cbd5e1;
+    max-width: 580px;
+    margin: 0 auto 2.5rem auto;
+    line-height: 1.7;
+}
+
+.accueil-hero-actions {
+    display: flex;
+    justify-content: center;
+    gap: 1rem;
+    flex-wrap: wrap;
+}
+
+/* Section avantages */
+.accueil-avantages {
+    display: flex;
+    justify-content: center;
+    gap: 2rem;
+    padding: 4rem 2rem;
+    flex-wrap: wrap;
+    background-color: #ffffff;
+}
+
+.accueil-avantage {
+    max-width: 280px;
+    text-align: center;
+    padding: 1.5rem;
+    border-radius: 12px;
+    background-color: #f8fafc;
+    border: 1px solid #e2e8f0;
+}
+
+.accueil-avantage-icone {
+    font-size: 2rem;
+    margin-bottom: 0.75rem;
+}
+
+.accueil-avantage h3 {
+    color: #1e293b;
+    margin-bottom: 0.75rem;
+    font-size: 1.05rem;
+    font-weight: 600;
+}
+
+.accueil-avantage p {
+    color: #64748b;
+    line-height: 1.6;
+    font-size: 0.9rem;
+}
+
+/* Section formations */
+.accueil-formations {
+    padding: 4rem 2rem;
+    background-color: #f8fafc;
+    flex: 1;
+}
+
+.accueil-section-titre {
+    text-align: center;
+    font-size: 1.6rem;
+    font-weight: 700;
+    color: #1e293b;
+    margin-bottom: 2.5rem;
+}
+
+.accueil-formations-grille {
+    display: flex;
+    justify-content: center;
+    gap: 1.5rem;
+    flex-wrap: wrap;
+    margin-bottom: 2rem;
+}
+
+.accueil-card {
+    background-color: #ffffff;
+    border-radius: 12px;
+    padding: 1.5rem;
+    width: 280px;
+    box-shadow: 0 2px 12px rgba(0, 0, 0, 0.06);
+    border: 1px solid #e2e8f0;
+    display: flex;
+    flex-direction: column;
+    gap: 0.5rem;
+    transition: box-shadow 0.2s, transform 0.2s;
+}
+
+.accueil-card:hover {
+    box-shadow: 0 6px 20px rgba(0, 0, 0, 0.1);
+    transform: translateY(-2px);
+}
+
+.accueil-card-niveau-badge {
+    display: inline-block;
+    background-color: #eff6ff;
+    color: #3b82f6;
+    font-size: 0.78rem;
+    font-weight: 600;
+    padding: 0.2rem 0.6rem;
+    border-radius: 20px;
+    text-transform: capitalize;
+    width: fit-content;
+}
+
+.accueil-card-titre {
+    font-size: 1rem;
+    font-weight: 600;
+    color: #1e293b;
+    margin: 0.25rem 0;
+}
+
+.accueil-card-formateur {
+    font-size: 0.85rem;
+    color: #94a3b8;
+    margin-bottom: 0.5rem;
+}
+
+.accueil-chargement,
+.accueil-vide {
+    text-align: center;
+    color: #94a3b8;
+    font-size: 0.95rem;
+    padding: 2rem;
+}
+
+.accueil-voir-tout {
+    text-align: center;
+    margin-top: 1rem;
+}

@@ -1,0 +1,169 @@
+.da-page {
+    min-height: 100vh;
+    display: flex;
+    flex-direction: column;
+    background-color: #f8fafc;
+}
+
+.da-contenu {
+    flex: 1;
+    max-width: 1100px;
+    margin: 0 auto;
+    padding: 2.5rem 1.5rem;
+    width: 100%;
+}
+
+.da-entete {
+    display: flex;
+    justify-content: space-between;
+    align-items: flex-start;
+    flex-wrap: wrap;
+    gap: 1rem;
+    margin-bottom: 2rem;
+}
+
+.da-titre {
+    font-size: 1.8rem;
+    font-weight: 700;
+    color: #1e293b;
+    margin-bottom: 0.25rem;
+}
+
+.da-sous-titre {
+    font-size: 0.95rem;
+    color: #64748b;
+}
+
+.da-succes {
+    background-color: #f0fdf4;
+    border: 1px solid #bbf7d0;
+    color: #15803d;
+    padding: 0.75rem 1rem;
+    border-radius: 8px;
+    font-size: 0.9rem;
+    margin-bottom: 1.25rem;
+}
+
+.da-erreur {
+    background-color: #fef2f2;
+    border: 1px solid #fecaca;
+    color: #dc2626;
+    padding: 0.75rem 1rem;
+    border-radius: 8px;
+    font-size: 0.9rem;
+    margin-bottom: 1.25rem;
+}
+
+.da-chargement {
+    text-align: center;
+    color: #94a3b8;
+    padding: 3rem;
+}
+
+.da-vide {
+    text-align: center;
+    padding: 4rem 2rem;
+    color: #64748b;
+    display: flex;
+    flex-direction: column;
+    align-items: center;
+    gap: 1rem;
+}
+
+.da-grille {
+    display: grid;
+    grid-template-columns: repeat(auto-fill, minmax(300px, 1fr));
+    gap: 1.5rem;
+}
+
+.da-card {
+    background-color: #ffffff;
+    border-radius: 12px;
+    padding: 1.5rem;
+    border: 1px solid #e2e8f0;
+    box-shadow: 0 2px 8px rgba(0, 0, 0, 0.05);
+    display: flex;
+    flex-direction: column;
+    gap: 0.75rem;
+    transition: box-shadow 0.2s, transform 0.2s;
+}
+
+.da-card:hover {
+    box-shadow: 0 6px 20px rgba(0, 0, 0, 0.09);
+    transform: translateY(-2px);
+}
+
+.da-card-badges {
+    display: flex;
+    gap: 0.5rem;
+}
+
+.da-badge-niveau {
+    background-color: #eff6ff;
+    color: #3b82f6;
+    font-size: 0.75rem;
+    font-weight: 600;
+    padding: 0.2rem 0.6rem;
+    border-radius: 20px;
+}
+
+.da-card-titre {
+    font-size: 1.05rem;
+    font-weight: 600;
+    color: #1e293b;
+    margin: 0;
+}
+
+.da-card-description {
+    font-size: 0.88rem;
+    color: #64748b;
+    line-height: 1.5;
+    margin: 0;
+    flex: 1;
+}
+
+/* Barre de progression */
+.da-progression-bloc {
+    display: flex;
+    flex-direction: column;
+    gap: 0.4rem;
+}
+
+.da-progression-header {
+    display: flex;
+    justify-content: space-between;
+    align-items: center;
+}
+
+.da-progression-label {
+    font-size: 0.82rem;
+    color: #64748b;
+}
+
+.da-progression-valeur {
+    font-size: 0.82rem;
+    font-weight: 700;
+    color: #3b82f6;
+}
+
+.da-progression-barre {
+    height: 8px;
+    background-color: #e2e8f0;
+    border-radius: 20px;
+    overflow: hidden;
+}
+
+.da-progression-remplissage {
+    height: 100%;
+    background-color: #3b82f6;
+    border-radius: 20px;
+    transition: width 0.4s ease;
+}
+
+.da-card-actions {
+    display: flex;
+    gap: 0.5rem;
+    flex-wrap: wrap;
+    margin-top: auto;
+    padding-top: 0.25rem;
+}

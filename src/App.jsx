@@ -4,6 +4,7 @@ import AccueilPage from './pages/AccueilPage';
 import CataloguePage from './pages/CataloguePage';
 import DetailFormationPage from './pages/DetailFormationPage';
 import DashboardFormateurPage from './pages/DashboardFormateurPage';
+import DashboardApprenantPage from './pages/DashboardApprenantPage';
 
 function RoutePrivee({ children }) {
     const { estConnecte } = useAuth();
@@ -42,7 +43,7 @@ function AppRoutes() {
                 element={
                     <RoutePrivee>
                         <RouteApprenant>
-                            <AccueilPage />
+                            <DashboardApprenantPage />
                         </RouteApprenant>
                     </RoutePrivee>
                 }

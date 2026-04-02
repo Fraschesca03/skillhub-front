@@ -1,0 +1,119 @@
+.mf-overlay {
+    position: fixed;
+    inset: 0;
+    background-color: rgba(0, 0, 0, 0.55);
+    display: flex;
+    justify-content: center;
+    align-items: center;
+    z-index: 200;
+    backdrop-filter: blur(2px);
+}
+
+.mf-boite {
+    background-color: #ffffff;
+    border-radius: 12px;
+    padding: 2rem;
+    width: 100%;
+    max-width: 500px;
+    position: relative;
+    box-shadow: 0 20px 60px rgba(0, 0, 0, 0.2);
+    animation: mf-entree 0.2s ease;
+    max-height: 90vh;
+    overflow-y: auto;
+}
+
+@keyframes mf-entree {
+    from {
+        opacity: 0;
+        transform: translateY(-20px);
+    }
+    to {
+        opacity: 1;
+        transform: translateY(0);
+    }
+}
+
+.mf-fermer {
+    position: absolute;
+    top: 1rem;
+    right: 1rem;
+    background: none;
+    border: none;
+    font-size: 1.1rem;
+    color: #94a3b8;
+    cursor: pointer;
+    padding: 0.2rem 0.4rem;
+    border-radius: 4px;
+    transition: color 0.2s, background-color 0.2s;
+}
+
+.mf-fermer:hover {
+    color: #1e293b;
+    background-color: #f1f5f9;
+}
+
+.mf-titre {
+    font-size: 1.3rem;
+    font-weight: 700;
+    color: #1e293b;
+    margin-bottom: 1.5rem;
+}
+
+.mf-erreur {
+    background-color: #fef2f2;
+    border: 1px solid #fecaca;
+    color: #dc2626;
+    padding: 0.65rem 0.9rem;
+    border-radius: 6px;
+    font-size: 0.88rem;
+    margin-bottom: 1rem;
+}
+
+.mf-formulaire {
+    display: flex;
+    flex-direction: column;
+    gap: 0.4rem;
+}
+
+.mf-label {
+    font-size: 0.88rem;
+    font-weight: 600;
+    color: #374151;
+    margin-top: 0.4rem;
+}
+
+.mf-input,
+.mf-select,
+.mf-textarea {
+    padding: 0.65rem 0.85rem;
+    border: 1px solid #d1d5db;
+    border-radius: 8px;
+    font-size: 0.95rem;
+    margin-bottom: 0.25rem;
+    outline: none;
+    transition: border-color 0.2s, box-shadow 0.2s;
+    font-family: inherit;
+}
+
+.mf-input:focus,
+.mf-select:focus,
+.mf-textarea:focus {
+    border-color: #3b82f6;
+    box-shadow: 0 0 0 3px rgba(59, 130, 246, 0.15);
+}
+
+.mf-textarea {
+    resize: vertical;
+    min-height: 100px;
+}
+
+.mf-select {
+    background-color: #ffffff;
+    cursor: pointer;
+}
+
+.mf-actions {
+    display: flex;
+    gap: 0.75rem;
+    margin-top: 1rem;
+}

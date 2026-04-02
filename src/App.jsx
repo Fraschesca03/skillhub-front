@@ -3,6 +3,7 @@ import { AuthProvider, useAuth } from './context/AuthContext';
 import AccueilPage from './pages/AccueilPage';
 import CataloguePage from './pages/CataloguePage';
 import DetailFormationPage from './pages/DetailFormationPage';
+import DashboardFormateurPage from './pages/DashboardFormateurPage';
 
 function RoutePrivee({ children }) {
     const { estConnecte } = useAuth();
@@ -22,16 +23,16 @@ function RouteApprenant({ children }) {
 function AppRoutes() {
     return (
         <Routes>
-            <Route path="/"                element={<AccueilPage />} />
-            <Route path="/formations"      element={<CataloguePage />} />
-            <Route path="/formation/:id"   element={<DetailFormationPage />} />
+            <Route path="/"              element={<AccueilPage />} />
+            <Route path="/formations"    element={<CataloguePage />} />
+            <Route path="/formation/:id" element={<DetailFormationPage />} />
 
             <Route
                 path="/dashboard/formateur"
                 element={
                     <RoutePrivee>
                         <RouteFormateur>
-                            <AccueilPage />
+                            <DashboardFormateurPage />
                         </RouteFormateur>
                     </RoutePrivee>
                 }

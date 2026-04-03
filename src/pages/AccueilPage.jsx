@@ -50,12 +50,19 @@ export default function AccueilPage() {
         },
     ];
 
-    const partenaires = [
-        'Université 1', 'Université 2', 'Université 3',
-        'Université 4', 'Université 5', 'Université 6',
-        'Université 7', 'Université 8',
-    ];
-
+   // Tableau des logos partenaires avec les vrais chemins d'images
+const partenaires = [
+  { id: 1,  src: '/images/carroussel/univ1.jpg',  alt: 'Partenaire 1'  },
+  { id: 2,  src: '/images/carroussel/univ2.png',  alt: 'Partenaire 2'  },
+  { id: 3,  src: '/images/carroussel/univ3.jpg',  alt: 'Partenaire 3'  },
+  { id: 4,  src: '/images/carroussel/univ4.jpg',  alt: 'Partenaire 4'  },
+  { id: 5,  src: '/images/carroussel/univ5.jpg',  alt: 'Partenaire 5'  },
+  { id: 6,  src: '/images/carroussel/univ6.png',  alt: 'Partenaire 6'  },
+  { id: 7,  src: '/images/carroussel/univ7.jpg',  alt: 'Partenaire 7'  },
+  { id: 8,  src: '/images/carroussel/univ8.jpg',  alt: 'Partenaire 8'  },
+  { id: 9,  src: '/images/carroussel/univ9.png',  alt: 'Partenaire 9'  },
+  { id: 10, src: '/images/carroussel/univ10.jpg', alt: 'Partenaire 10' },
+];
     const getNiveauLabel = (niveau) => {
         const labels = { debutant: 'Débutant', intermediaire: 'Intermédiaire', avance: 'Avancé' };
         return labels[niveau] || niveau;
@@ -206,22 +213,31 @@ export default function AccueilPage() {
             </section>
 
             {/* PARTENAIRES */}
-            <section className="accueil-partenaires">
-                <h2 className="titre-section">Nos Partenaires officiels</h2>
-                <p className="accueil-partenaires-desc">
-                    Ils nous soutiennent dans notre mission educative depuis plusieurs annees.
-                </p>
-                <div className="carousel-wrapper">
-                    <div className="carousel-track">
-                        {[...partenaires, ...partenaires].map((p, i) => (
-                            <div key={i} className="carousel-card">
-                                <span>{p}</span>
-                            </div>
-                        ))}
-                    </div>
-                </div>
-            </section>
+            {/* ===== Section Partenaires ===== */}
+<section className="accueil-partenaires">
 
+  <h2 className="titre-section">Nos Partenaires officiels</h2>
+  <p className="accueil-partenaires-desc">
+    Ils nous soutiennent dans notre mission éducative depuis plusieurs années.
+  </p>
+
+  <div className="carousel-wrapper">
+    <div className="carousel-track">
+      {/* On duplique le tableau pour l'effet boucle infinie */}
+      {[...partenaires, ...partenaires].map((p, i) => (
+        <div key={i} className="carousel-card">
+          <img
+            src={p.src}
+            alt={p.alt}
+            className="carousel-logo"
+            loading="lazy"
+          />
+        </div>
+      ))}
+    </div>
+  </div>
+
+</section>
             {/* TEMOIGNAGES */}
             <section className="accueil-temoignages">
                 <h2 className="titre-section">Ils nous font confiance</h2>

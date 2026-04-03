@@ -386,27 +386,32 @@
 
 /* ===================== PARTENAIRES ===================== */
 .accueil-partenaires {
-    background-color: #0f1623;
-    padding: 5rem 2rem;
-    overflow: hidden;
+  background-color: #0d1b2a;
+  padding: 72px 0 64px 0;
+  overflow: hidden;
+  text-align: center;
 }
 
 .accueil-partenaires-desc {
-    text-align: center;
-    color: #7a8aaa;
-    font-size: 0.92rem;
-    margin-top: -2rem;
-    margin-bottom: 3rem;
-    max-width: 520px;
-    margin-left: auto;
-    margin-right: auto;
-    line-height: 1.6;
+  color: #b0bec5;
+  font-size: 1rem;
+  margin: 0 0 52px 0;       /* ← espace entre sous-titre et carrousel */
+  line-height: 1.6;
+}
+/* Espacement titre / sous-titre corrigé */
+.accueil-partenaires .titre-section {
+  color: #f5a623;
+  font-size: 2.6rem;
+  font-weight: 900;
+  margin: 0 0 10px 0;       /* ← espace réduit sous le titre */
 }
 
+/* ===== Carrousel ===== */
 .carousel-wrapper {
-    overflow: hidden;
-    width: 100%;
-    position: relative;
+  overflow: hidden;
+  /* Fondu gauche/droite */
+  -webkit-mask-image: linear-gradient(to right, transparent 0%, black 10%, black 90%, transparent 100%);
+          mask-image: linear-gradient(to right, transparent 0%, black 10%, black 90%, transparent 100%);
 }
 
 .carousel-wrapper::before,
@@ -431,14 +436,15 @@
 }
 
 .carousel-track {
-    display: flex;
-    gap: 1.25rem;
-    animation: defiler 22s linear infinite;
-    width: max-content;
+  display: flex;
+  align-items: center;
+  gap: 40px;
+  width: max-content;
+  animation: defilement 28s linear infinite;
 }
 
 .carousel-track:hover {
-    animation-play-state: paused;
+  animation-play-state: paused;   /* Pause au survol */
 }
 
 @keyframes defiler {
@@ -446,25 +452,43 @@
     100% { transform: translateX(-50%); }
 }
 
+/* Carte logo */
 .carousel-card {
-    background-color: #1a2236;
-    border: 1px solid rgba(255, 255, 255, 0.07);
-    border-radius: 12px;
-    padding: 1.1rem 2rem;
-    min-width: 180px;
-    display: flex;
-    align-items: center;
-    justify-content: center;
-    color: #7a8aaa;
-    font-size: 0.88rem;
-    font-weight: 600;
-    white-space: nowrap;
-    transition: border-color 0.2s, color 0.2s;
+  flex-shrink: 0;
+  border-radius: 12px;
+  height: 100px;
+  min-width: 160px;
+  overflow: hidden;             /* Cache ce qui dépasse */
+  display: flex;
+  align-items: center;
+  justify-content: center;
+  transition: transform 0.3s ease, box-shadow 0.3s ease;
 }
 
 .carousel-card:hover {
-    border-color: rgba(79, 142, 247, 0.35);
-    color: #c8d3e8;
+  transform: translateY(-4px);
+  box-shadow: 0 8px 24px rgba(245, 166, 35, 0.2);
+}
+/* Image du logo et remplie la carte*/
+.carousel-logo {
+  width: 100%;
+  height: 100%;
+  object-fit: cover;            /* Remplit sans déformer */
+  object-position: center;
+  display: block;
+  filter: grayscale(15%);
+  transition: filter 0.3s ease, transform 0.3s ease;
+}
+
+.carousel-card:hover .carousel-logo {
+  filter: grayscale(0%);
+  transform: scale(1.05);       /* Léger zoom au survol */
+}
+
+/* Animation défilement infini */
+@keyframes defilement {
+  0%   { transform: translateX(0); }
+  100% { transform: translateX(-50%); }  /* -50% car tableau dupliqué */
 }
 
 /* ===================== TEMOIGNAGES ===================== */

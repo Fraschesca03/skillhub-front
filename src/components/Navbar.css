@@ -252,3 +252,55 @@
         width: 100%;
     }
 }
+/* ── Bouton icône messagerie ──────────────────────────────── */
+.navbar-messagerie-btn {
+    position: relative;
+    background: rgba(255, 255, 255, 0.08);
+    border: 1px solid rgba(255, 255, 255, 0.12);
+    cursor: pointer;
+    color: #ffffff;
+    display: flex;
+    align-items: center;
+    justify-content: center;
+    width: 38px;
+    height: 38px;
+    border-radius: 10px;
+    transition: background 0.2s ease, border-color 0.2s ease, color 0.2s ease;
+}
+
+.navbar-messagerie-btn:hover {
+    background: rgba(245, 166, 35, 0.2);
+    border-color: #f5a623;
+    color: #f5a623;
+}
+
+.navbar-messagerie-btn svg {
+    width: 18px;
+    height: 18px;
+}
+
+/* ── Badge rouge nombre de messages ───────────────────────── */
+.navbar-badge {
+    position: absolute;
+    top: -6px;
+    right: -6px;
+    background: #e53935;
+    color: #ffffff;
+    font-size: 0.62rem;
+    font-weight: 700;
+    min-width: 18px;
+    height: 18px;
+    border-radius: 9px;
+    display: flex;
+    align-items: center;
+    justify-content: center;
+    padding: 0 4px;
+    border: 2px solid #0d1b2a;
+    animation: badge-pop 0.3s ease;
+}
+
+@keyframes badge-pop {
+    0%   { transform: scale(0); }
+    70%  { transform: scale(1.2); }
+    100% { transform: scale(1); }
+}

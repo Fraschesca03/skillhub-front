@@ -13,6 +13,7 @@
     margin: 0 auto;
     padding: 2.5rem 1.5rem;
     width: 100%;
+    box-sizing: border-box;
 }
 
 .catalogue-titre {
@@ -23,6 +24,7 @@
     margin-bottom: 1.5rem;
     letter-spacing: -1.5px;
 }
+
 .catalogue-titre::after {
     content: '';
     display: block;
@@ -97,8 +99,9 @@
 
 .catalogue-grille {
     display: grid;
-    grid-template-columns: repeat(auto-fill, minmax(300px, 1fr));
+    grid-template-columns: repeat(auto-fill, minmax(min(300px, 100%), 1fr));
     gap: 1.5rem;
+    width: 100%;
 }
 
 .catalogue-card {
@@ -110,6 +113,8 @@
     flex-direction: column;
     gap: 0.75rem;
     transition: transform 0.25s, border-color 0.25s, box-shadow 0.25s;
+    width: 100%;
+    min-width: 0;
 }
 
 .catalogue-card:hover {
@@ -251,7 +256,58 @@
     opacity: 1;
 }
 
-@media (max-width: 600px) {
+/* ============================================================
+   RESPONSIVE
+   ============================================================ */
+
+@media (max-width: 768px) {
+    .catalogue-contenu {
+        padding: 1.5rem 1rem;
+    }
+
+    .catalogue-titre {
+        font-size: 1.9rem;
+        letter-spacing: -0.5px;
+    }
+
+    .catalogue-filtres {
+        flex-direction: column;
+        gap: 0.75rem;
+        padding: 1rem;
+    }
+
+    .catalogue-input-recherche {
+        width: 100%;
+        min-width: unset;
+    }
+
+    .catalogue-select {
+        width: 100%;
+    }
+
+    .catalogue-grille {
+        grid-template-columns: 1fr;
+    }
+
+    .catalogue-card-actions {
+        flex-direction: column;
+    }
+
+    .catalogue-card-actions .bouton {
+        width: 100%;
+        justify-content: center;
+    }
+}
+
+@media (max-width: 480px) {
+    .catalogue-titre {
+        font-size: 1.5rem;
+    }
+
+    .catalogue-card {
+        padding: 1.1rem;
+    }
+
     .catalogue-notification {
         bottom: 1rem;
         right: 1rem;

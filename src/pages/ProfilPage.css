@@ -161,3 +161,50 @@
 .profil-retour {
     margin-top: 1.5rem;
 }
+
+/* ============================================================
+   RESPONSIVE — ProfilPage
+   ============================================================ */
+
+@media (max-width: 768px) {
+    .profil-contenu {
+        padding: 1.5rem 1rem;
+    }
+
+    .profil-titre {
+        font-size: 1.5rem;
+    }
+
+    .profil-carte {
+        padding: 1.25rem;
+        gap: 1.25rem;
+    }
+}
+
+@media (max-width: 480px) {
+    .profil-info-ligne {
+        flex-direction: column;
+        align-items: flex-start;
+        gap: 0.3rem;
+    }
+
+    .profil-carte {
+        padding: 1rem;
+    }
+
+    .profil-avatar-initiales,
+    .profil-avatar-img {
+        width: 90px;
+        height: 90px;
+    }
+
+    .profil-avatar-wrapper {
+        width: 90px;
+        height: 90px;
+    }
+
+    .profil-retour .bouton {
+        width: 100%;
+        justify-content: center;
+    }
+}

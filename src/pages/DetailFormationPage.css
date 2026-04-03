@@ -196,3 +196,54 @@
     gap: 1rem;
     color: #f87171;
 }
+/* ============================================================
+   RESPONSIVE — DetailFormationPage
+   ============================================================ */
+
+@media (max-width: 768px) {
+    .detail-contenu {
+        padding: 1.25rem 1rem;
+    }
+
+    .detail-entete {
+        padding: 1.25rem;
+    }
+
+    .detail-titre {
+        font-size: 1.4rem;
+        letter-spacing: -0.3px;
+    }
+
+    .detail-meta {
+        flex-direction: column;
+        gap: 0.5rem;
+    }
+
+    .detail-actions {
+        flex-direction: column;
+    }
+
+    .detail-actions .bouton {
+        width: 100%;
+        justify-content: center;
+    }
+
+    .detail-modules {
+        padding: 1.25rem;
+    }
+}
+
+@media (max-width: 480px) {
+    .detail-titre {
+        font-size: 1.2rem;
+    }
+
+    .detail-module-item {
+        flex-direction: column;
+        gap: 0.5rem;
+    }
+
+    .detail-module-numero {
+        align-self: flex-start;
+    }
+}

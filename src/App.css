@@ -30,3 +30,13 @@ img {
     max-width: 100%;
     display: block;
 }
+/* Fix global — évite tous les débordements */
+*, *::before, *::after {
+    box-sizing: border-box;
+}
+
+/* Empêche le scroll horizontal sur toute la page */
+html, body {
+    overflow-x: hidden;
+    max-width: 100%;
+}

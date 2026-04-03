@@ -318,3 +318,110 @@
         font-size: 1.5rem;
     }
 }
+/* ============================================================
+   RESPONSIVE — ApprendrePage
+   ============================================================ */
+
+@media (max-width: 900px) {
+    .apprendre-contenu {
+        padding: 1.5rem 1rem;
+    }
+
+    .apprendre-titre {
+        font-size: 1.6rem;
+        letter-spacing: -0.5px;
+    }
+
+    /* Layout passe en colonne : sidebar au-dessus du contenu */
+    .apprendre-layout {
+        grid-template-columns: 1fr;
+    }
+
+    /* Sidebar n'est plus sticky sur mobile */
+    .apprendre-sidebar {
+        position: static;
+    }
+
+    /* Liste des modules en grille 2 colonnes sur tablette */
+    .apprendre-modules-liste {
+        display: grid;
+        grid-template-columns: repeat(2, 1fr);
+        gap: 0.4rem;
+    }
+}
+
+@media (max-width: 600px) {
+    .apprendre-contenu {
+        padding: 1rem 0.75rem;
+    }
+
+    .apprendre-entete {
+        padding: 1.1rem;
+        gap: 1rem;
+    }
+
+    .apprendre-titre {
+        font-size: 1.3rem;
+    }
+
+    .apprendre-description {
+        font-size: 0.88rem;
+    }
+
+    /* Modules en 1 colonne sur mobile */
+    .apprendre-modules-liste {
+        grid-template-columns: 1fr;
+    }
+
+    .apprendre-module-contenu {
+        padding: 1.1rem;
+        min-height: unset;
+    }
+
+    /* En-tête module : titre + bouton empilés */
+    .apprendre-module-entete {
+        flex-direction: column;
+        align-items: flex-start;
+        gap: 0.75rem;
+    }
+
+    .apprendre-module-titre {
+        font-size: 1.1rem;
+    }
+
+    /* Bouton "Marquer comme terminé" pleine largeur */
+    .apprendre-module-entete .bouton {
+        width: 100%;
+        justify-content: center;
+    }
+
+    .apprendre-badge-termine {
+        align-self: flex-start;
+    }
+
+    .apprendre-module-texte {
+        font-size: 0.88rem;
+        line-height: 1.7;
+    }
+
+    /* Navigation précédent / suivant pleine largeur */
+    .apprendre-navigation {
+        flex-direction: column;
+        gap: 0.5rem;
+    }
+
+    .apprendre-navigation .bouton {
+        width: 100%;
+        justify-content: center;
+    }
+}
+
+@media (max-width: 400px) {
+    .apprendre-titre {
+        font-size: 1.1rem;
+    }
+
+    .apprendre-sidebar-titre {
+        font-size: 0.85rem;
+    }
+}

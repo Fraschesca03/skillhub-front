@@ -13,11 +13,15 @@ export default function Navbar() {
 
     const handleLogout = async () => {
         await logout();
+        setMenuOuvert(false);
         navigate('/');
     };
 
+    const fermerMenu = () => setMenuOuvert(false);
+
+    // Redirige vers le dashboard selon le role
     const allerAuDashboard = () => {
-        setMenuOuvert(false);
+        fermerMenu();
         if (utilisateur?.role === 'formateur') {
             navigate('/dashboard/formateur');
         } else {
@@ -30,40 +34,50 @@ export default function Navbar() {
             <nav className="navbar">
                 <div className="navbar-container">
 
-                    {/* Logo */}
-                    <Link to="/" className="navbar-logo">
+                    <Link to="/" className="navbar-logo" onClick={fermerMenu}>
                         Skill<span className="navbar-logo-hub">Hub</span>
                     </Link>
 
-                    {/* Liens desktop */}
                     <div className={`navbar-liens ${menuOuvert ? 'navbar-liens-ouvert' : ''}`}>
-                        <Link to="/"           className="navbar-lien" onClick={() => setMenuOuvert(false)}>Accueil</Link>
-                        <Link to="/formations" className="navbar-lien" onClick={() => setMenuOuvert(false)}>Formations</Link>
-                        <a href="#apropos"     className="navbar-lien" onClick={() => setMenuOuvert(false)}>A propos</a>
-                        <a href="#contact"     className="navbar-lien" onClick={() => setMenuOuvert(false)}>Contact</a>
+                        <Link to="/"           className="navbar-lien" onClick={fermerMenu}>Accueil</Link>
+                        <Link to="/formations" className="navbar-lien" onClick={fermerMenu}>Formations</Link>
+                        <a href="#apropos"     className="navbar-lien" onClick={fermerMenu}>A propos</a>
+                        <a href="#contact"     className="navbar-lien" onClick={fermerMenu}>Contact</a>
+
+                        <div className="navbar-separateur" />
 
                         {estConnecte() ? (
                             <>
-                                {/* Nom cliquable vers le dashboard */}
+                                {/* Clic sur le nom/avatar -> dashboard */}
                                 <button className="navbar-profil" onClick={allerAuDashboard}>
+                                    {utilisateur?.photo_profil ? (
+                                        <img
+                                            src={`http://localhost:8000${utilisateur.photo_profil}`}
+                                            alt="profil"
+                                            className="navbar-avatar"
+                                        />
+                                    ) : (
+                                        <span className="navbar-avatar-initiales">
+                                            {utilisateur?.nom?.slice(0, 2).toUpperCase()}
+                                        </span>
+                                    )}
                                     {utilisateur?.nom}
                                 </button>
+
                                 <button className="navbar-btn-deconnexion" onClick={handleLogout}>
                                     Se deconnecter
                                 </button>
                             </>
                         ) : (
-                            /* Un seul bouton — ouvre modal avec login + onglet register */
                             <button
                                 className="navbar-btn-connexion"
-                                onClick={() => { setModalOuverte(true); setMenuOuvert(false); }}
+                                onClick={() => { setModalOuverte(true); fermerMenu(); }}
                             >
                                 Se connecter
                             </button>
                         )}
                     </div>
 
-                    {/* Burger mobile */}
                     <button
                         className={`navbar-burger ${menuOuvert ? 'navbar-burger-ouvert' : ''}`}
                         onClick={() => setMenuOuvert(!menuOuvert)}
@@ -77,7 +91,6 @@ export default function Navbar() {
                 </div>
             </nav>
 
-            {/* Modal auth — login avec onglet S'inscrire accessible */}
             {modalOuverte && (
                 <ModalAuth
                     mode="login"

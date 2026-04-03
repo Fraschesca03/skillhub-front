@@ -1,4 +1,3 @@
-import './App.css';
 import { BrowserRouter, Routes, Route, Navigate } from 'react-router-dom';
 import { AuthProvider, useAuth } from './context/AuthContext';
 import AccueilPage from './pages/AccueilPage';
@@ -7,6 +6,7 @@ import DetailFormationPage from './pages/DetailFormationPage';
 import DashboardFormateurPage from './pages/DashboardFormateurPage';
 import DashboardApprenantPage from './pages/DashboardApprenantPage';
 import ApprendrePage from './pages/ApprendrePage';
+import ProfilPage from './pages/ProfilPage';
 
 function RoutePrivee({ children }) {
     const { estConnecte } = useAuth();
@@ -26,10 +26,22 @@ function RouteApprenant({ children }) {
 function AppRoutes() {
     return (
         <Routes>
-            <Route path="/" element={<AccueilPage />} />
-            <Route path="/formations" element={<CataloguePage />} />
+            {/* Routes publiques */}
+            <Route path="/"              element={<AccueilPage />} />
+            <Route path="/formations"    element={<CataloguePage />} />
             <Route path="/formation/:id" element={<DetailFormationPage />} />
 
+            {/* Profil — accessible par tout utilisateur connecté */}
+            <Route
+                path="/profil"
+                element={
+                    <RoutePrivee>
+                        <ProfilPage />
+                    </RoutePrivee>
+                }
+            />
+
+            {/* Dashboard formateur */}
             <Route
                 path="/dashboard/formateur"
                 element={
@@ -41,6 +53,7 @@ function AppRoutes() {
                 }
             />
 
+            {/* Dashboard apprenant */}
             <Route
                 path="/dashboard/apprenant"
                 element={
@@ -52,6 +65,7 @@ function AppRoutes() {
                 }
             />
 
+            {/* Page de suivi formation */}
             <Route
                 path="/apprendre/:id"
                 element={
@@ -63,6 +77,7 @@ function AppRoutes() {
                 }
             />
 
+            {/* Redirection par défaut */}
             <Route path="*" element={<Navigate to="/" />} />
         </Routes>
     );

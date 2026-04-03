@@ -4,129 +4,178 @@
     z-index: 200;
     background-color: #0f1623;
     border-bottom: 1px solid rgba(255, 255, 255, 0.07);
+    width: 100%;
 }
 
 .navbar-container {
-    max-width: 1200px;
+    max-width: 1280px;
     margin: 0 auto;
-    padding: 0 2rem;
-    height: 68px;
+    padding: 0 2.5rem;
+    height: 72px;
     display: flex;
     align-items: center;
     justify-content: space-between;
     gap: 1rem;
 }
 
-/* Logo */
+/* Logo plus grand et stylé */
 .navbar-logo {
     font-family: 'Outfit', sans-serif;
-    font-size: 1.5rem;
+    font-size: 1.75rem;
     font-weight: 800;
     color: #f0f4ff;
-    letter-spacing: -0.5px;
+    letter-spacing: -1px;
     text-decoration: none;
+    flex-shrink: 0;
+    line-height: 1;
 }
 
-/* Hub en bleu vif simple — pas de gradient text pour eviter les bugs */
 .navbar-logo-hub {
     color: #4f8ef7;
 }
 
-/* Liens */
+/* Groupe liens + boutons */
 .navbar-liens {
     display: flex;
     align-items: center;
-    gap: 1.25rem;
+    gap: 0.15rem;
 }
 
+/* Liens de navigation */
 .navbar-lien {
+    font-family: 'DM Sans', sans-serif;
     font-size: 0.9rem;
     font-weight: 500;
     color: #7a8aaa;
     text-decoration: none;
+    padding: 0.45rem 0.9rem;
+    border-radius: 8px;
+    position: relative;
     transition: color 0.2s;
+    white-space: nowrap;
+}
+
+/* Soulignement bleu animé */
+.navbar-lien::after {
+    content: '';
+    position: absolute;
+    bottom: 4px;
+    left: 50%;
+    transform: translateX(-50%);
+    width: 0;
+    height: 2px;
+    background-color: #4f8ef7;
+    border-radius: 2px;
+    transition: width 0.25s ease;
 }
 
 .navbar-lien:hover {
-    color: #f0f4ff;
+    color: #4f8ef7;
 }
 
-/* Profil */
+.navbar-lien:hover::after {
+    width: calc(100% - 1.8rem);
+}
+
+/* Separateur vertical entre liens et boutons */
+.navbar-separateur {
+    width: 1px;
+    height: 22px;
+    background-color: rgba(255, 255, 255, 0.1);
+    margin: 0 0.5rem;
+}
+
+/* Bouton profil avec avatar */
 .navbar-profil {
+    display: flex;
+    align-items: center;
+    gap: 0.5rem;
     background: none;
     border: none;
+    font-family: 'DM Sans', sans-serif;
     font-size: 0.9rem;
-    font-weight: 600;
-    color: #c8d3e8;
-    padding: 0.4rem 0.75rem;
+    font-weight: 700;
+    color: #f0f4ff;
+    padding: 0.35rem 0.75rem;
     border-radius: 50px;
     cursor: pointer;
     transition: background-color 0.2s, color 0.2s;
+    white-space: nowrap;
 }
 
 .navbar-profil:hover {
     background-color: rgba(255, 255, 255, 0.06);
-    color: #f0f4ff;
+    color: #4f8ef7;
+}
+
+/* Avatar photo */
+.navbar-avatar {
+    width: 32px;
+    height: 32px;
+    border-radius: 50%;
+    object-fit: cover;
+    border: 2px solid #4f8ef7;
+    flex-shrink: 0;
+}
+
+/* Avatar initiales */
+.navbar-avatar-initiales {
+    width: 32px;
+    height: 32px;
+    border-radius: 50%;
+    background-color: #4f8ef7;
+    display: flex;
+    align-items: center;
+    justify-content: center;
+    font-family: 'Outfit', sans-serif;
+    font-size: 0.72rem;
+    font-weight: 700;
+    color: #ffffff;
+    flex-shrink: 0;
 }
 
 /* Bouton Se connecter */
 .navbar-btn-connexion {
-    background: none;
-    border: 1px solid rgba(255, 255, 255, 0.12);
-    color: #c8d3e8;
-    padding: 0.45rem 1.1rem;
-    border-radius: 50px;
+    font-family: 'DM Sans', sans-serif;
     font-size: 0.88rem;
     font-weight: 500;
+    background: none;
+    border: 1px solid rgba(255, 255, 255, 0.15);
+    color: #c8d3e8;
+    padding: 0.48rem 1.2rem;
+    border-radius: 50px;
     cursor: pointer;
-    font-family: 'DM Sans', sans-serif;
     transition: background-color 0.2s, border-color 0.2s, color 0.2s;
+    white-space: nowrap;
 }
 
 .navbar-btn-connexion:hover {
     background-color: rgba(255, 255, 255, 0.06);
-    border-color: rgba(255, 255, 255, 0.2);
+    border-color: rgba(255, 255, 255, 0.25);
     color: #f0f4ff;
 }
 
-/* Bouton S'inscrire */
-.navbar-btn-inscription {
-    background-color: #4f8ef7;
-    border: none;
-    color: #ffffff;
-    padding: 0.45rem 1.2rem;
-    border-radius: 50px;
-    font-size: 0.88rem;
-    font-weight: 600;
-    cursor: pointer;
-    font-family: 'DM Sans', sans-serif;
-    transition: background-color 0.2s, transform 0.2s;
-}
-
-.navbar-btn-inscription:hover {
-    background-color: #3b6fd4;
-    transform: translateY(-1px);
-}
-
-/* Se deconnecter */
+/* Bouton Se deconnecter */
 .navbar-btn-deconnexion {
-    background: none;
-    border: 1px solid rgba(239, 68, 68, 0.25);
-    color: #f87171;
-    padding: 0.45rem 1.1rem;
-    border-radius: 50px;
+    font-family: 'DM Sans', sans-serif;
     font-size: 0.88rem;
     font-weight: 500;
+    background: none;
+    border: 1px solid rgba(239, 68, 68, 0.3);
+    color: #f87171;
+    padding: 0.48rem 1.2rem;
+    border-radius: 50px;
     cursor: pointer;
-    font-family: 'DM Sans', sans-serif;
-    transition: background-color 0.2s;
+    transition: background-color 0.2s, border-color 0.2s;
+    white-space: nowrap;
 }
 
 .navbar-btn-deconnexion:hover {
     background-color: rgba(239, 68, 68, 0.08);
+    border-color: rgba(239, 68, 68, 0.5);
 }
 
-/* Burger */
+/* Burger mobile */
 .navbar-burger {
     display: none;
     flex-direction: column;
@@ -135,6 +184,7 @@
     border: none;
     padding: 6px;
     cursor: pointer;
+    flex-shrink: 0;
 }
 
 .navbar-burger span {
@@ -158,7 +208,8 @@
     transform: translateY(-7px) rotate(-45deg);
 }
 
-@media (max-width: 768px) {
+/* Responsive mobile */
+@media (max-width: 900px) {
     .navbar-burger {
         display: flex;
     }
@@ -166,25 +217,38 @@
     .navbar-liens {
         display: none;
         position: absolute;
-        top: 68px;
+        top: 72px;
         left: 0;
         right: 0;
         flex-direction: column;
         align-items: flex-start;
         background-color: #0f1623;
-        padding: 1.5rem 2rem;
-        gap: 1rem;
+        padding: 1.25rem 2rem;
+        gap: 0.5rem;
         border-bottom: 1px solid rgba(255, 255, 255, 0.07);
+        box-shadow: 0 8px 24px rgba(0, 0, 0, 0.3);
     }
 
     .navbar-liens-ouvert {
         display: flex;
     }
 
+    .navbar-lien {
+        width: 100%;
+        padding: 0.6rem 0.5rem;
+    }
+
+    .navbar-separateur {
+        display: none;
+    }
+
     .navbar-btn-connexion,
-    .navbar-btn-inscription,
     .navbar-btn-deconnexion {
         width: 100%;
         text-align: center;
+    }
+
+    .navbar-profil {
+        width: 100%;
     }
 }

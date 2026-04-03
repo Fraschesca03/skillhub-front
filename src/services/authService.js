@@ -50,6 +50,23 @@ const authService = {
         const user = authService.getUtilisateur();
         return user && user.role === 'apprenant';
     },
+    uploadPhoto: async (fichier) => {
+    const formData = new FormData();
+    formData.append('photo', fichier);
+
+    const response = await api.post('/profil/photo', formData, {
+        headers: {
+            'Content-Type': 'multipart/form-data',
+        },
+    });
+
+    // Mise à jour du localStorage avec la nouvelle photo
+    const userActuel = authService.getUtilisateur();
+    const userMisAJour = { ...userActuel, photo_profil: response.data.photo_profil };
+    localStorage.setItem('user', JSON.stringify(userMisAJour));
+
+    return response.data;
+},
 };
 
 export default authService;

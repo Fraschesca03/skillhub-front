@@ -13,17 +13,20 @@ export default function CataloguePage() {
     const { estConnecte, estApprenant } = useAuth();
     const navigate = useNavigate();
 
-    const [formations,   setFormations]   = useState([]);
-    const [chargement,   setChargement]   = useState(true);
-    const [modalMode,    setModalMode]    = useState(null);
-    const [messageOk,    setMessageOk]    = useState('');
+    const [formations,  setFormations]  = useState([]);
+    const [chargement,  setChargement]  = useState(true);
+    const [modalMode,   setModalMode]   = useState(null);
+    const [notification, setNotification] = useState(null);
 
-    // Filtres
-    const [recherche,  setRecherche]  = useState('');
-    const [categorie,  setCategorie]  = useState('');
-    const [niveau,     setNiveau]     = useState('');
+    const [recherche, setRecherche] = useState('');
+    const [categorie, setCategorie] = useState('');
+    const [niveau,    setNiveau]    = useState('');
 
-    // Chargement des formations avec filtres
+    const afficherNotification = (message, type = 'succes') => {
+        setNotification({ message, type });
+        setTimeout(() => setNotification(null), 3500);
+    };
+
     const chargerFormations = async () => {
         setChargement(true);
         try {
@@ -31,7 +34,6 @@ export default function CataloguePage() {
             if (recherche) filtres.recherche = recherche;
             if (categorie) filtres.categorie = categorie;
             if (niveau)    filtres.niveau    = niveau;
-
             const data = await formationService.getFormations(filtres);
             setFormations(data);
         } catch (error) {
@@ -41,16 +43,10 @@ export default function CataloguePage() {
         }
     };
 
-    // Chargement initial
-    useEffect(() => {
-        chargerFormations();
-    }, []);
+    useEffect(() => { chargerFormations(); }, []);
 
-    // Relance la recherche quand les filtres changent
     useEffect(() => {
-        const delai = setTimeout(() => {
-            chargerFormations();
-        }, 400);
+        const delai = setTimeout(() => { chargerFormations(); }, 400);
         return () => clearTimeout(delai);
     }, [recherche, categorie, niveau]);
 
@@ -59,14 +55,16 @@ export default function CataloguePage() {
             setModalMode('login');
             return;
         }
-
         try {
             await inscriptionService.sInscrire(formationId);
-            setMessageOk('Inscription réussie !');
-            setTimeout(() => setMessageOk(''), 3000);
+            afficherNotification('Inscription reussie ! Retrouvez cette formation dans votre dashboard.', 'succes');
         } catch (error) {
             const msg = error.response?.data?.message || 'Erreur inscription';
-            alert(msg);
+            if (msg.includes('deja')) {
+                afficherNotification('Vous etes deja inscrit a cette formation.', 'info');
+            } else {
+                afficherNotification(msg, 'erreur');
+            }
         }
     };
 
@@ -80,15 +78,20 @@ export default function CataloguePage() {
         <div className="catalogue-page">
             <Navbar />
 
+            {/* Notification fixe en bas a droite */}
+            {notification && (
+                <div className={`catalogue-notification catalogue-notification-${notification.type}`}>
+                    <span className="catalogue-notif-icone">
+                        {notification.type === 'succes' ? '✓' : notification.type === 'info' ? 'ℹ' : '✕'}
+                    </span>
+                    <span>{notification.message}</span>
+                    <button className="catalogue-notif-fermer" onClick={() => setNotification(null)}>✕</button>
+                </div>
+            )}
+
             <div className="catalogue-contenu">
                 <h1 className="catalogue-titre">Toutes les formations</h1>
 
-                {/* Message succès inscription */}
-                {messageOk && (
-                    <p className="catalogue-succes">{messageOk}</p>
-                )}
-
-                {/* Barre de filtres */}
                 <div className="catalogue-filtres">
                     <input
                         type="text"
@@ -97,112 +100,69 @@ export default function CataloguePage() {
                         onChange={(e) => setRecherche(e.target.value)}
                         className="catalogue-input-recherche"
                     />
-
-                    <select
-                        value={categorie}
-                        onChange={(e) => setCategorie(e.target.value)}
-                        className="catalogue-select"
-                    >
-                        <option value="">Toutes les catégories</option>
-                        <option value="developpement_web">Développement web</option>
+                    <select value={categorie} onChange={(e) => setCategorie(e.target.value)} className="catalogue-select">
+                        <option value="">Toutes les categories</option>
+                        <option value="developpement_web">Developpement web</option>
                         <option value="data">Data</option>
                         <option value="design">Design</option>
                         <option value="marketing">Marketing</option>
                         <option value="devops">DevOps</option>
                         <option value="autre">Autre</option>
                     </select>
-
-                    <select
-                        value={niveau}
-                        onChange={(e) => setNiveau(e.target.value)}
-                        className="catalogue-select"
-                    >
+                    <select value={niveau} onChange={(e) => setNiveau(e.target.value)} className="catalogue-select">
                         <option value="">Tous les niveaux</option>
-                        <option value="debutant">Débutant</option>
-                        <option value="intermediaire">Intermédiaire</option>
-                        <option value="avance">Avancé</option>
+                        <option value="debutant">Debutant</option>
+                        <option value="intermediaire">Intermediaire</option>
+                        <option value="avance">Avance</option>
                     </select>
-
                     {(recherche || categorie || niveau) && (
-                        <Bouton
-                            variante="secondaire"
-                            taille="petit"
-                            onClick={reinitialiserFiltres}
-                        >
-                            Réinitialiser
+                        <Bouton variante="secondaire" taille="petit" onClick={reinitialiserFiltres}>
+                            Reinitialiser
                         </Bouton>
                     )}
                 </div>
 
-                {/* Résultats */}
                 {chargement ? (
                     <p className="catalogue-chargement">Chargement...</p>
                 ) : formations.length === 0 ? (
-                    <p className="catalogue-vide">Aucune formation trouvée.</p>
+                    <p className="catalogue-vide">Aucune formation trouvee.</p>
                 ) : (
                     <>
                         <p className="catalogue-compteur">
-                            {formations.length} formation{formations.length > 1 ? 's' : ''} trouvée{formations.length > 1 ? 's' : ''}
+                            {formations.length} formation{formations.length > 1 ? 's' : ''} trouvee{formations.length > 1 ? 's' : ''}
                         </p>
-
                         <div className="catalogue-grille">
                             {formations.map((formation) => (
                                 <div key={formation.id} className="catalogue-card">
-
                                     <div className="catalogue-card-badges">
-                                        <span className="catalogue-badge-niveau">
-                                            {formation.niveau}
-                                        </span>
-                                        <span className="catalogue-badge-categorie">
-                                            {formation.categorie?.replace('_', ' ')}
-                                        </span>
+                                        <span className="catalogue-badge-niveau">{formation.niveau}</span>
+                                        <span className="catalogue-badge-categorie">{formation.categorie?.replace('_', ' ')}</span>
                                     </div>
-
-                                    <h3 className="catalogue-card-titre">
-                                        {formation.titre}
-                                    </h3>
-
+                                    <h3 className="catalogue-card-titre">{formation.titre}</h3>
                                     <p className="catalogue-card-description">
                                         {formation.description?.slice(0, 100)}
                                         {formation.description?.length > 100 ? '...' : ''}
                                     </p>
-
                                     <div className="catalogue-card-meta">
                                         <span>Par {formation.formateur?.nom}</span>
                                         <span>{formation.inscriptions_count} apprenant{formation.inscriptions_count > 1 ? 's' : ''}</span>
                                         <span>{formation.nombre_de_vues} vue{formation.nombre_de_vues > 1 ? 's' : ''}</span>
                                     </div>
-
                                     <div className="catalogue-card-actions">
-                                        <Bouton
-                                            variante="fantome"
-                                            taille="petit"
-                                            onClick={() => navigate(`/formation/${formation.id}`)}
-                                        >
-                                            Voir détail
+                                        <Bouton variante="fantome" taille="petit" onClick={() => navigate(`/formation/${formation.id}`)}>
+                                            Voir detail
                                         </Bouton>
-
                                         {estApprenant() && (
-                                            <Bouton
-                                                variante="principal"
-                                                taille="petit"
-                                                onClick={() => handleInscription(formation.id)}
-                                            >
+                                            <Bouton variante="principal" taille="petit" onClick={() => handleInscription(formation.id)}>
                                                 S'inscrire
                                             </Bouton>
                                         )}
-
                                         {!estConnecte() && (
-                                            <Bouton
-                                                variante="principal"
-                                                taille="petit"
-                                                onClick={() => setModalMode('login')}
-                                            >
+                                            <Bouton variante="principal" taille="petit" onClick={() => setModalMode('login')}>
                                                 Suivre la formation
                                             </Bouton>
                                         )}
                                     </div>
-
                                 </div>
                             ))}
                         </div>
@@ -213,10 +173,7 @@ export default function CataloguePage() {
             <Footer />
 
             {modalMode && (
-                <ModalAuth
-                    mode={modalMode}
-                    onFermer={() => setModalMode(null)}
-                />
+                <ModalAuth mode={modalMode} onFermer={() => setModalMode(null)} />
             )}
         </div>
     );

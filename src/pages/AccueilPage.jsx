@@ -103,24 +103,32 @@ export default function AccueilPage() {
             </section>
 
             {/* COMMENT CA MARCHE */}
-            <section className="accueil-fonctionnement">
-                <h2 className="titre-section">Comment ca marche ?</h2>
-                <div className="accueil-cards-grille">
-                    {[
-                        { titre: 'Build up yourself', desc: 'Développe tes compétences avec des cours guidés et projets.', chip: 'Explorer',  icon: '✓' },
-                        { titre: 'Enroll',            desc: "Inscris-toi rapidement et commence dès aujourd'hui.",          chip: "S'inscrire", icon: '★' },
-                        { titre: 'Resources',         desc: 'Accède aux supports, quiz, PDF et suivi des progrès.',          chip: 'Voir plus',  icon: '📁' },
-                        { titre: 'Call',              desc: "Contacte-nous pour plus d'information.",                       chip: 'Contacter',  icon: '📞' },
-                    ].map((item, i) => (
-                        <div key={i} className="accueil-card-glass">
-                            <div className="accueil-card-icone">{item.icon}</div>
-                            <h3>{item.titre}</h3>
-                            <p>{item.desc}</p>
-                            <span className="accueil-card-chip">{item.chip}</span>
-                        </div>
-                    ))}
+           {/* COMMENT CA MARCHE */}
+<section className="accueil-fonctionnement">
+    <h2 className="titre-section">Comment ca marche ?</h2>
+    <div className="accueil-cards-grille">
+        {[
+            { titre: 'Build up yourself', desc: 'Developpe tes competences avec des cours guides et projets.', chip: 'Explorer',   photo: '/images/ccm/build.jpg' },
+            { titre: 'Enroll',            desc: "Inscris-toi rapidement et commence des aujourd'hui.",          chip: "S'inscrire", photo: '/images/ccm/enroll.jpg' },
+            { titre: 'Resources',         desc: 'Accede aux supports, quiz, PDF et suivi des progres.',          chip: 'Voir plus',  photo: '/images/ccm/ressource.jpg' },
+            { titre: 'Call',              desc: "Contacte-nous pour plus d'information.",                       chip: 'Contacter',  photo: '/images/ccm/call.jpg' },
+        ].map((item, i) => (
+            <div
+                key={i}
+                className="accueil-card-glass"
+                style={{ backgroundImage: `url(${item.photo})` }}
+            >
+                {/* Overlay sombre pour lisibilité */}
+                <div className="accueil-card-overlay" />
+                <div className="accueil-card-contenu">
+                    <h3>{item.titre}</h3>
+                    <p>{item.desc}</p>
+                    <span className="accueil-card-chip">{item.chip}</span>
                 </div>
-            </section>
+            </div>
+        ))}
+    </div>
+</section>
 
             {/* NOS VALEURS */}
             <section className="accueil-valeurs">

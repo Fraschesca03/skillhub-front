@@ -26,14 +26,19 @@ export function AuthProvider({ children }) {
         setUtilisateur(null);
     };
 
+    const estConnecte  = () => utilisateur !== null;
+    const estFormateur = () => utilisateur !== null && utilisateur.role === 'formateur';
+    const estApprenant = () => utilisateur !== null && utilisateur.role === 'apprenant';
+
     const valeur = {
         utilisateur,
+        setUtilisateur,
         login,
         register,
         logout,
-        estConnecte: () => utilisateur !== null,
-        estFormateur: () => utilisateur?.role === 'formateur',
-        estApprenant: () => utilisateur?.role === 'apprenant',
+        estConnecte,
+        estFormateur,
+        estApprenant,
     };
 
     return (

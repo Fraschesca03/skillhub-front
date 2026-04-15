@@ -27,7 +27,7 @@ jobs:
 
       # 3 - Test + coverage
       - name: Test
-        run: npm run test -- --coverage
+        run: npm run test
 
       # 4 - SonarCloud
       - name: SonarCloud Scan

@@ -33,7 +33,7 @@ export default function ModalModules({ formation, onFermer }) {
             // Pré-remplir l'ordre avec le prochain numéro disponible
             setOrdre(data.length + 1);
         } catch (error) {
-            setErreur('Erreur lors du chargement des modules.');
+            setErreur('Erreur lors du chargement des modules.', error);
         } finally {
             setChargement(false);
         }
@@ -61,7 +61,7 @@ export default function ModalModules({ formation, onFermer }) {
             chargerModules();
             setTimeout(() => setMessageOk(''), 3000);
         } catch (error) {
-            setErreur('Erreur lors de la création du module.');
+            setErreur('Erreur lors de la création du module.', error);
         } finally {
             setLoadingAjout(false);
         }
@@ -82,7 +82,7 @@ export default function ModalModules({ formation, onFermer }) {
             chargerModules();
             setTimeout(() => setMessageOk(''), 3000);
         } catch (error) {
-            setErreur('Erreur lors de la modification du module.');
+            setErreur('Erreur lors de la modification du module.', error);
         }
     };
 
@@ -96,7 +96,7 @@ export default function ModalModules({ formation, onFermer }) {
             chargerModules();
             setTimeout(() => setMessageOk(''), 3000);
         } catch (error) {
-            setErreur('Erreur lors de la suppression.');
+            setErreur('Erreur lors de la suppression.', error);
         }
     };
 

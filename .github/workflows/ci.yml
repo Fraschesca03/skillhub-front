@@ -1,0 +1,37 @@
+name: CI (Quality Gate)
+
+on:
+  push:
+    branches: [dev, main]
+  pull_request:
+    branches: [dev, main]
+
+jobs:
+  ci:
+    runs-on: ubuntu-latest
+
+    steps:
+      # 0 - Code
+      - name: Checkout
+        uses: actions/checkout@v4
+        with:
+          fetch-depth: 0
+
+      # 1 - Install
+      - name: Install dependencies
+        run: npm ci
+
+      # 2 - Lint
+      - name: Lint
+        run: npm run lint
+
+      # 3 - Test + coverage
+      - name: Test
+        run: npm run test
+
+      # 4 - SonarCloud
+      - name: SonarCloud Scan
+        uses: SonarSource/sonarcloud-github-action@v2
+        env:
+          GITHUB_TOKEN: ${{ secrets.GITHUB_TOKEN }}
+          SONAR_TOKEN: ${{ secrets.SONAR_TOKEN }}

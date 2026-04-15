@@ -14,6 +14,7 @@ export default function ApprendrePage() {
     const navigate = useNavigate();
     const { utilisateur } = useAuth();
 
+    console.log('Utilisateur connecté :', utilisateur);
     const [formation,    setFormation]    = useState(null);
     const [modules,      setModules]      = useState([]);
     const [inscription,  setInscription]  = useState(null);
@@ -53,7 +54,7 @@ export default function ApprendrePage() {
             }
 
         } catch (error) {
-            setErreur('Erreur lors du chargement de la formation.');
+            setErreur('Erreur lors du chargement de la formation.', error);
         } finally {
             setChargement(false);
         }

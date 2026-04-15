@@ -35,7 +35,7 @@ export default function DashboardFormateurPage() {
             );
             setFormations(mes);
         } catch (error) {
-            setErreur('Erreur lors du chargement.');
+            setErreur('Erreur lors du chargement.', error);
         } finally {
             setChargement(false);
         }

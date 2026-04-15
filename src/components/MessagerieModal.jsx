@@ -18,6 +18,16 @@ export default function MessagerieModal({ onFermer }) {
     const pollingRef     = useRef(null);
     const token          = localStorage.getItem('token');
 
+    // Fonctions métier
+    const chargerConversations = async () => {
+        const data = await get('messages/conversations');
+        setConversations(data.conversations ?? []);
+    };
+
+    const chargerMessages = async (interlocuteurId) => {
+        const data = await get(`messages/conversation/${interlocuteurId}`);
+        setMessages(data.messages ?? []);
+    };
     // Helpers fetch
     const get = (url) =>
         fetch(`http://localhost:8000/api/${url}`, {
@@ -37,6 +47,7 @@ export default function MessagerieModal({ onFermer }) {
     // Chargement initial
     useEffect(() => {
         chargerConversations();
+        // eslint-disable-next-line react-hooks/exhaustive-deps
     }, []);
 
     // Polling toutes les 3s sur la conversation active
@@ -53,16 +64,9 @@ export default function MessagerieModal({ onFermer }) {
         messagesFinRef.current?.scrollIntoView({ behavior: 'smooth' });
     }, [messages]);
 
-    // Fonctions métier
-    const chargerConversations = async () => {
-        const data = await get('messages/conversations');
-        setConversations(data.conversations ?? []);
-    };
+    
 
-    const chargerMessages = async (interlocuteurId) => {
-        const data = await get(`messages/conversation/${interlocuteurId}`);
-        setMessages(data.messages ?? []);
-    };
+    
 
     const ouvrirConversation = async (conv) => {
         clearInterval(pollingRef.current);

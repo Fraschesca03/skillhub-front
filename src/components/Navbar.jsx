@@ -22,6 +22,7 @@ export default function Navbar() {
      * Polling toutes les 5s pour récupérer les messages non lus.
      * S'arrête automatiquement si l'utilisateur se déconnecte.
      */
+    // eslint-disable-next-line react-hooks/exhaustive-deps
     useEffect(() => {
         if (!estConnecte()) {
             setNonLus(0);

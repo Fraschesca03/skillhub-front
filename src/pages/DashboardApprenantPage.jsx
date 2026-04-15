@@ -26,7 +26,7 @@ export default function DashboardApprenantPage() {
             const data = await inscriptionService.mesFormations();
             setInscriptions(data);
         } catch (error) {
-            setErreur('Erreur lors du chargement des formations.');
+            setErreur('Erreur lors du chargement des formations.', error);
         } finally {
             setChargement(false);
         }

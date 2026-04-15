@@ -45,7 +45,7 @@ export default function DetailFormationPage() {
                     setInscrit(dejaInscrit);
                 }
             } catch (error) {
-                setErreur('Formation introuvable.');
+                setErreur('Formation introuvable.', error);
             } finally {
                 setChargement(false);
             }

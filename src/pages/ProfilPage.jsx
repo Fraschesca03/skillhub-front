@@ -39,7 +39,7 @@ export default function ProfilPage() {
             // Mise a jour du contexte
             setUtilisateur(data.user);
         } catch (error) {
-            setErreur("Erreur lors de l'upload. Verifiez le format (jpg, png) et la taille (max 2MB).");
+            setErreur("Erreur lors de l'upload. Verifiez le format (jpg, png) et la taille (max 2MB).", error);
         } finally {
             setChargement(false);
         }

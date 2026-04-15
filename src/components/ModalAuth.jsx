@@ -52,7 +52,7 @@ export default function ModalAuth({ mode = 'login', onFermer }) {
                 navigate('/dashboard/apprenant');
             }
         } catch (error) {
-            setErreur('Email ou mot de passe incorrect.');
+            setErreur('Email ou mot de passe incorrect.', error);
         } finally {
             setChargement(false);
         }
